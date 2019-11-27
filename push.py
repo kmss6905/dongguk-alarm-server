@@ -38,7 +38,7 @@ for td_title in soup.select('td.title'):
 
         access_token = "AAAAYAsKOKc:APA91bEHFYNMhpS4sjJagX-UnVjmZRJEXTTRmtdA0UDAWml6uHinY-GTUfSTWUuyU9AIDqYI_WACZr31apXJPb1qYC6uT0L4Wl1rU-Ur9QK-rntM8bDB_qe6lkgNPOdogV5-_OXXBKmv"
         headers = {'content-type': 'application/json', 'Authorization': 'key={}'.format(access_token)}
-        if test2.isNew("nomal"):    
+        if check_board.isNew("nomal"):    
             response = requests.post(url, data=json.dumps(payload), headers=headers)
             print(response.status_code)
             print(img)

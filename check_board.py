@@ -37,42 +37,47 @@ def get_web_notice_num(notice_url, type : str):
     req = requests.get(notice_url)
     html = req.text
     soup = BeautifulSoup(html, 'html.parser')
-    return int(soup.find("img",{"src":"/Web-home/manager/images/mbsPreview/icon_new.gif" }).parent.parent[0].text)
+    return int(soup.find("img",{"src":"/Web-home/manager/images/mbsPreview/icon_new.gif" }).parent.parent.find_all('td')[0].text)
 
 
 
 #웹 에서 가져온 게시물의 넘버와 디비에 저장된 게시물의 넘버와 비교하는 함수
-def is_new(web_board_num, db_board_num):
+def is_new(web_board_num, db_board_num : int):
     if web_board_num != db_board_num: 
         return True
     else:
         return False
 
 
-#새로운 게시물일 경우 True 반환 아니면 False
+# 최종적으로 확인하는 것!
 def isNew(type_ : str):
-    
-    if is_new(get_web_notice_num(urls.returnUrl[type_]), type_) , get_db_notice_num(get_connection(), type_) :
+    if is_new(get_web_notice_num(urls.returnUrl(type_), type_), get_db_notice_num(get_connection(), type_)):
+        print("최신가져왓음")
+        return True
+    else :
+        print("아직갱신안됨")
+        return False        
+
+
+
+
+#get_db_notice_num(get_connection(), 'nomal')
+
+
+'''
+#새로운 게시물일 경우 True 반환 아니면 False
+def isNew(type_ : str): 
+    if is_new(get_web_notice_num(urls.returnUrl[type_], type_) , get_db_notice_num(get_connection(), type_)) :
         return True
     else :
         return False
 
-
-
-
-
-
-
-
-#get_web_notice_num(urls.returnUrl('nomal'), 'hello')
-
-
-#print("notice_num : " + str(get_notice_num(get_connection(), 'nomal')))
+#isNew("nomal")
 '''
 
-req = requests.get(urls.returnUrl("nomal"))
-html = req.text
-soup = BeautifulSoup(html, 'html.parser')
 
-for tr in soup.select("tr"):
-    print(tr)'''
+
+#get_web_notice_num(urls.returnUrl("nomal"), 'hello')
+
+
+#print("notice_num : " + str(get_notice_num(get_connection(), 'nomal')
