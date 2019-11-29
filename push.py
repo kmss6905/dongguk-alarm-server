@@ -67,19 +67,12 @@ for _type_ in urls.get_urls_dic():
                     "to": "/topics/test-topic"
                     ,
                     "data": {
-                        "key1": "https://www.dongguk.edu/mbs/kr/jsp/board/" + title_text[0].get("href"),
-                        "key2": "nice"
-                    }
-                    ,
-                    "notification": {
+                        "link": title_text[0].get("href"),
                         "title": title_,
-                        "body": title_text[0].text,
-                        "image": "https://www.dongguk.edu/mbs/kr/images_new/logo.jpg",
-                        "icon": "ic_new",
-                        "color": "#0000FF"
+                        "content": title_text[0].text,
+                        "icon:":"ic_new",
                     }
                 }
-
                 access_token = "AAAAYAsKOKc:APA91bEHFYNMhpS4sjJagX-UnVjmZRJEXTTRmtdA0UDAWml6uHinY-GTUfSTWUuyU9AIDqYI_WACZr31apXJPb1qYC6uT0L4Wl1rU-Ur9QK-rntM8bDB_qe6lkgNPOdogV5-_OXXBKmv"
                 headers = {'content-type': 'application/json', 'Authorization': 'key={}'.format(access_token)}
                 response = requests.post(url, data=json.dumps(payload), headers=headers)
