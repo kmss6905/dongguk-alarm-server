@@ -47,7 +47,7 @@ payload = {
         }
     }
 url = 'https://fcm.googleapis.com/fcm/send'
-access_token = "AAAAYAsKOKc:APA91bEHFYNMhpS4sjJagX-UnVjmZRJEXTTRmtdA0UDAWml6uHinY-GTUfSTWUuyU9AIDqYI_WACZr31apXJPb1qYC6uT0L4Wl1rU-Ur9QK-rntM8bDB_qe6lkgNPOdogV5-_OXXBKmv"
+#access_token <- you put fcm-server key 
 headers = {'content-type': 'application/json', 'Authorization': 'key={}'.format(access_token)}
 response = requests.post(url, data=json.dumps(payload), headers=headers)
 print(response.status_code)
